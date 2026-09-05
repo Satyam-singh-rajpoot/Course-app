@@ -33,7 +33,7 @@ useEffect(()=>{
 const handleLogout = async()=>{
  
   try {
-    const response=await  axios.get(`${BACKEND_URL}/user/logout`,{
+    const response=await  axios.get(`${BACKEND_URL}/api/v1/user/logout`,{
       withCredentials:true,
     })
     
@@ -63,7 +63,7 @@ useEffect(() => {
     }
     try {
       setLoading(true)
-      const response= await axios.get(`${BACKEND_URL}/user/purchases`,{
+      const response= await axios.get(`${BACKEND_URL}/api/v1/user/purchases`,{
         withCredentials:true,
         
       })

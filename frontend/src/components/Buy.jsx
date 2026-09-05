@@ -24,7 +24,7 @@ const Buy = () => {
     }
     try {
       setLoading(true)
-      const {data}= await axios.post(`${BACKEND_URL}/course/buy/${courseId}`,{},{
+      const {data}= await axios.post(`${BACKEND_URL}/api/v1/course/buy/${courseId}`,{},{
         withCredentials:true,
         
       })

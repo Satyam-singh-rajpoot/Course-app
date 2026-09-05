@@ -33,7 +33,7 @@ useEffect(()=>{
 const handleLogout = async()=>{
  
   try {
-    const response=await  axios.get(`${BACKEND_URL}/user/logout`,{
+    const response=await  axios.get(`${BACKEND_URL}/api/v1/user/logout`,{
       withCredentials:true,
     })
     
@@ -54,7 +54,7 @@ useEffect(() => {
     
     const fetchCourses = async () => {
       try {
-        const response = await axios.get(`${BACKEND_URL}/course/courses`, {
+        const response = await axios.get(`${BACKEND_URL}/api/v1/course/courses`, {
           withCredentials: true,
         });
         console.log(response.data.courses);

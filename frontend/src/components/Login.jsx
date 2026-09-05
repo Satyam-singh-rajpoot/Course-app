@@ -20,7 +20,7 @@ function Login() {
 
     try {
       const response = await axios.post(
-        `${BACKEND_URL}/user/login`,
+        `${BACKEND_URL}/api/v1/user/login`,
         {
           
           email,
@@ -34,7 +34,7 @@ function Login() {
         }
       );
       
-      console.log("Sugnup successful: ", response.data);
+      console.log("Login successful: ", response.data);
       toast.success(response.data.message);
       navigate("/");
       localStorage.setItem("user", JSON.stringify(response.data.token));

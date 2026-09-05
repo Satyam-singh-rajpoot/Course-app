@@ -21,7 +21,7 @@ function Signup() {
 
     try {
       const response = await axios.post(
-        `${BACKEND_URL}/user/signup`,
+        `${BACKEND_URL}/api/v1/user/signup`,
         {
           firstname,
           lastname,

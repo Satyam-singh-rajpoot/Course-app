@@ -40,7 +40,7 @@ function CourseCreate() {
 
     try {
       const response = await axios.post(
-        `${BACKEND_URL}/course/create`,
+        `${BACKEND_URL}/api/v1/course/create`,
         formData,
         {
            withCredentials: true,
