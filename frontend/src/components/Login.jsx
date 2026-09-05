@@ -36,8 +36,9 @@ function Login() {
       
       console.log("Sugnup successful: ", response.data);
       toast.success(response.data.message);
-      localStorage.setItem("user", JSON.stringify(response.data.token));
       navigate("/");
+      localStorage.setItem("user", JSON.stringify(response.data.token));
+      
     } catch (error) {
       if (error.response) {
         

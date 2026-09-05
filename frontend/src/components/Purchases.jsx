@@ -5,7 +5,7 @@ import { HiMenu } from 'react-icons/hi';
 import { IoMdSettings } from 'react-icons/io';
 import { IoLogIn, IoLogOut } from 'react-icons/io5';
 import { RiHome2Fill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { BACKEND_URL } from '../utils/utils';
 
 const Purchases = () => {
@@ -14,7 +14,9 @@ const [purchases, setPurchases] = useState([]);
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 const [loading, setLoading] = useState(true);
 const [errorMessage, setErrorMessage] = useState(true);
-const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
+const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+const navigate = useNavigate();
 
 console.log(purchases)
 
@@ -36,7 +38,7 @@ const handleLogout = async()=>{
     })
     
     toast.success( response.data.message);
-    
+    navigate("/login")
     localStorage.removeItem("user");
     
     setIsLoggedIn(false);
@@ -54,9 +56,10 @@ useEffect(() => {
     
     const fetchPurchases=async()=>{
     if(!token){
-      
+      navigate("/login")
       setErrorMessage("Please login to purchase the courses")
-      return
+      
+     
     }
     try {
       setLoading(true)

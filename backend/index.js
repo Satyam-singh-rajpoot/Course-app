@@ -1,13 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors"
 import courseRoutes from "./routes/courseRoute.js";
 import { v2 as cloudinary } from 'cloudinary';
 import fileUpload from "express-fileupload";
 import userRouter from "./routes/userRoutes.js";
 import cookieParser from "cookie-parser";
 import adminRouter from "./routes/adminRoute.js";
-import cors from "cors"
+
 
 
 const app = express();
