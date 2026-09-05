@@ -41,7 +41,7 @@ export const signup = async (req, res) => {
       }
 
       const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET_ADMIN, { expiresIn: "1d" });
-      res.cookie("jwt", token, { httpOnly: true,secure: process.env.NODE_ENV === "production", sameSite: "strict", maxAge: 24 * 60 * 60 * 1000 });
+      res.cookie("token", token, { httpOnly: true,secure: process.env.NODE_ENV === "production", sameSite: "strict", maxAge: 24 * 60 * 60 * 1000 });
 
       res.status(200).json({ message: "Login successful", admin , token});
     } catch (error) {
@@ -54,7 +54,7 @@ export const signup = async (req, res) => {
         if (!req.cookies.jwt) {
             return res.status(400).json({ message: "Login first" });
         }
-      res.clearCookie("jwt");
+      res.clearCookie("token");
       res.status(200).json({ message: "Logout successful" });
     } catch (error) {
       res.status(500).json({ message: "Internal server error" });
