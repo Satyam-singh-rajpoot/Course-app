@@ -15,6 +15,19 @@ const app = express();
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
+
+const configuredOrigins = (process.env.FRONTEND_URLS || process.env.FRONTEND_URL || "")
+    .split(",")
+    .map((origin) => origin.trim().replace(/\/$/, ""))
+    .filter(Boolean);
+
+const isAllowedOrigin = (origin) => {
+    if (!origin) return true;
+    if (configuredOrigins.includes(origin)) return true;
+
+    return /^https:\/\/course-app-to43-[a-z0-9-]+\.vercel\.app$/i.test(origin);
+};
+
 //middleware
 app.use(express.json());
 app.use(cookieParser())
@@ -23,7 +36,9 @@ app.use(fileUpload({
     tempFileDir : '/tmp/'
 }));
 app.use(cors({
-    origin: process.env.FRONTEND_URL,
+    origin: (origin, callback) => {
+        callback(null, isAllowedOrigin(origin));
+    },
     credentials:true,
     methods:["GET", "POST", "PUT", "DELETE"],
     allowedHeaders:["Content-Type", "Authorization"]
