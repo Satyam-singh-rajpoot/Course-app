@@ -65,6 +65,9 @@ useEffect(() => {
       setLoading(true)
       const response= await axios.get(`${BACKEND_URL}/api/v1/user/purchases`,{
         withCredentials:true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         
       })
       

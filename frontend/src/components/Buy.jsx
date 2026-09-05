@@ -26,6 +26,9 @@ const Buy = () => {
       setLoading(true)
       const {data}= await axios.post(`${BACKEND_URL}/api/v1/course/buy/${courseId}`,{},{
         withCredentials:true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
         
       })
       
